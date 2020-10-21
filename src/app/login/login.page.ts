@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController, MenuController } from '@ionic/angular';
-import { TemplateService } from '../service/template-service';
-
+import { TemplateService } from '../services/template.service';
 @Component({
 selector: 'app-login',
 templateUrl: './login.page.html',
@@ -29,7 +28,6 @@ this.auth.signInWithEmailAndPassword(user,pass).then(data=>{
 load.dismiss();
 this.menuCtrl.enable(true);
 this.navCtrl.navigateRoot(['clientes']);
-
 }).catch(data=>{
   load.dismiss();
   this.template.myAlert("Erro ao atenticar");
@@ -39,8 +37,7 @@ this.navCtrl.navigateRoot(['clientes']);
   iniciarForm(){
   this.formGroup= this.formBuilder.group({
   username : ['',[Validators.email] ],
-  password: ['', [Validators.required, Validators.minLength(13), Validators
-  .maxLength(16)]]
+  password: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(16)]]
   })
   }
   }
